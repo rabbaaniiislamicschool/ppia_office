@@ -41,14 +41,20 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
+  static const String aEnv = '.env';
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(this._assetName, {this.size = null});
 
   final String _assetName;
+
+  final Size? size;
 
   Image image({
     Key? key,

@@ -793,7 +793,7 @@ class HomeScreen extends HookConsumerWidget {
                   ),
                   MenuGrid(
                     title: 'Tabungan',
-                    iconData: Icons.savings,
+                    iconData: Icons.monetization_on,
                     goToRouteName: AppRoute.studentTransaction.name,
                     queryParameters: {'type': 'Tabungan'},
                   ),
@@ -1045,6 +1045,8 @@ class HomeScreen extends HookConsumerWidget {
     try {
       final presenceLocation =
           await showChooseLocationDialog(context, ref, key);
+      if(presenceLocation == null) return;
+
       final position = await ref.read(getCurrentLocationProvider.future);
       final token = ref
           .watch(sharedPreferencesHelperProvider)
@@ -1055,7 +1057,7 @@ class HomeScreen extends HookConsumerWidget {
         longitude: position.longitude,
         latitude: position.latitude,
         key: key,
-        lokasi: '${presenceLocation?.idAsrama}',
+        lokasi: '${presenceLocation.idAsrama}',
         token: token,
         device: device,
       );
